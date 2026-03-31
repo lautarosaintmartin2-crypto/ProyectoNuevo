@@ -17,15 +17,17 @@
 </script>
 
 <div>
-    <h2>Detalles del Coche</h2>
+    <h2 class="text-red-500">Detalles del Coche</h2>
     <p>Marca: {coche.marca}</p>
     <p>Modelo: {coche.modelo} </p>
     <p>Año: {coche.año} </p>
     <p>Puertas: {coche.puertas} </p>
 
-    <button onclick={() => actualizarPropiedad(coche, 'marca', 'Honda')}>
-        Cambiar a marca honda
-    </button>
+    <!-- <button onclick={() => actualizarPropiedad(coche, 'año', 2024)}>
+        Cambiar a año 2024 
+    </button> -->
+    <label for="año">Cambiar año:</label>
+    <input bind:value={coche.año} type="text">
 
 </div>
 
@@ -34,7 +36,9 @@
     <p>Marca: {vehiculoresumen.marca}</p>
     <p>Modelo: {vehiculoresumen.modelo} </p>
 
-    <button onclick={() => actualizarPropiedad(vehiculoresumen, 'modelo', 'Accura')}>   
+    <!-- <button onclick={() => actualizarPropiedad(vehiculoresumen, 'modelo', 'Accura')}>   
         Cambiar a modelo Accura
-    </button>
+    </button> -->
+    <label for="modelo">Cambiar modelo:</label>
+    <input bind:value={vehiculoresumen.modelo} type="text">
 </div>
