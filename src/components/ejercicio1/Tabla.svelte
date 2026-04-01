@@ -1,6 +1,6 @@
 <script lang="ts">
     import {inventario, obtenerPrecioFinal, nota} from "./Logica.svelte"
-    import { Categoria } from "../../core/interfaces/generic.interface";
+    import { Categoria } from "../../core/interfaces/ejercicio1.interface.ts";
 </script>
 
 <table> 

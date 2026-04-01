@@ -1,4 +1,4 @@
-import{Categoria, type Producto} from "../../core/interfaces/generic.interface.ts";
+import{Categoria, type Producto} from "../../core/interfaces/ejercicio1.interface.ts";
 
 export const obtenerPrecioFinal = (p: Producto): number => 
 {

@@ -1,5 +1,5 @@
 <script lang="ts">
-    import type {Coche,  VehiculoResumen} from "../../core/interfaces/generic.interface.ts";
+    import type {Coche,  VehiculoResumen} from "../../core/interfaces/ejercicio2.interface.ts";
     import { actualizarPropiedad } from "./logica.svelte.ts";
 
     const coche: Coche = $state({

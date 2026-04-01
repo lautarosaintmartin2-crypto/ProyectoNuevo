@@ -1,32 +1,65 @@
 <script lang="ts">    
-    import { email } from 'astro:schema';
 import { onMount } from 'svelte';
-    let usuarios = $state<any[]>([])
+import type {Post} from '../../core/interfaces/ejercicio3.interface'
+    let posts = $state<Post[]>([])
+    let userId = $state<number>(0)
 
     onMount(async () => {
-        const respuesta = await fetch("https://jsonplaceholder.typicode.com/users");
-        usuarios = await respuesta.json()
+
+        console.log("onMount")
+
+        const respuesta = await fetch("https://jsonplaceholder.typicode.com/posts");
+        posts = await respuesta.json()
+
+        console.log("posts: ", posts)
     }) 
 
-</script>
+    const filterPost = async (userId: number) => {
+        if(userId === 0 || isNaN(userId)){
+            alert("Please enter a valid userId")
+            return;
+         }
+            const filteredPost  = posts 
+            .filter(posts => posts.userId === userId)
+            .map((posts) => {
+                return{
+                    id: posts.id,
+                    title: posts.title
+                }
+            })
+            if(filteredPost.length === 0){
+                alert("No posts found for the given user ID")
+                return;
+            }else{
+                console.log(`Se encontraron ${filteredPost.length} posts para el user ID ${userId}:`, filteredPost)
+            }
+    }
+
+
+</script>  
+
+    <div class="mb-2 p-2">
+    <input class="border" bind:value={userId} type = "number" step="1" min="0">
+    <button onclick={() => filterPost(userId)}>Filtrar Post</button>
+    </div>
 
 <table class="w-full"> 
     <thead class="bg-gray-400 text-black">
             <tr>
                 <th>ID</th>
-                <th>Nombre</th>
-                <th>Username</th>
-                <th>Email</th>
+                <th>User ID</th>
+                <th>Title</th>
+                <th>Body</th>
             </tr>
     </thead>
           
     <tbody class="bg-gray-200 flex-1">
-        {#each usuarios as user}
+        {#each posts as post}
             <tr class="p-1 hover:bg-gray-300">
-                <td>{user.id}</td>
-                <td>{user.name}</td>
-                <td>{user.username}</td>
-                <td>{user.email}</td>
+                <td>{post.id}</td>
+                <td>{post.userId}</td>
+                <td>{post.title}</td>
+                <td>{post.body}</td>
             </tr>
         {/each} 
     </tbody>
